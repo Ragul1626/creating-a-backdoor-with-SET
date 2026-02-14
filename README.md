@@ -1,3 +1,4 @@
+
 # creating-a-backdoor-with-SET
 creating a backdoor with SET - Ethical Hacking Techniques course
 
@@ -19,67 +20,77 @@ Investigate on the various categories of tools as follows:
 
 Open terminal and try execute some kali linux commands
 
+### Architecture Diagram
+
+```
++----------------+        +------------------------+        +----------------------+
+| Attacker's PC  | -----> | SET (Credential        | -----> | Fake Login Page      |
+| (Kali Linux)   |        | Harvester via Apache)  |        | (Hosted by SET)      |
++----------------+        +------------------------+        +----------------------+
+       |                                                             |
+       |                                                             v
+       |   1. Configure SET with phishing site (e.g., Gmail clone)   |
+       |                                                             |
+       |                                                             v
+       |                                                 +----------------------+
+       |                                                 | Victim's Browser     |
+       | <------------------------------------------------| Clicks Phishing Link|
+       |                                                 +----------------------+
+       |                                                             |
+       |                                                             v
+       |     2. Victim Enters Credentials → Sent to SET/Attacker    |
+       |                                                             |
+       |                                                             v
+       |                                                 +----------------------+
+       |                                                 | Credentials Captured |
+       |                                                 | in Apache log/SET DB |
+       |                                                 +----------------------+
+
+```
+
 ## EXECUTION STEPS AND ITS OUTPUT:
-Social Engineering attacks are the various cons used by the hackers to trick people into providing sensitive data to the attackers. 
-The command sudo setoolkit in the prompt gives menu with set prompt:
-## OUTPUT
+Social Engineering attacks are the various cons used by the hackers to trick people into providing sensitive data to the attackers.
+
+**Steps to Use SET for Phishing (Credential Harvester Attack Method)**
+
+**1. Open terminal:**
+```bash
+sudo setoolkit
+```
+**2. Navigate:**
+```bash
+1) Social-Engineering Attacks  
+2) Website Attack Vectors  
+3) Credential Harvester Attack Method  
+```
+**3. Enter your IP address as the attacker server.**
+**4. Choose:**
+```bash
+2) Site Cloner
+```
+**5. Enter the URL of the legitimate site ```(e.g., https://accounts.google.com)```**
+
+**6. Send the generated link to the victim.**
+
+**7. Once the victim logs in → their credentials are stored in:**
+```bash
+/var/www/html/
+```
+
+## OUTPUT:
+
+<img width="1920" height="1200" alt="Screenshot (160)" src="https://github.com/user-attachments/assets/23856900-db3a-48ae-81ab-134bae688535" />
+
+<img width="1920" height="1200" alt="Screenshot (161)" src="https://github.com/user-attachments/assets/a002db36-6d30-4321-8ee5-bfba071f608b" />
+
+<img width="1920" height="1200" alt="Screenshot (162)" src="https://github.com/user-attachments/assets/0a661137-31f9-4b05-adeb-094d8cc21f5e" />
+
+<img width="1920" height="1200" alt="Screenshot (163)" src="https://github.com/user-attachments/assets/61fcaffc-2947-46fe-9b42-47a8a28da4af" />
+
+<img width="1919" height="1151" alt="Screenshot 2025-10-12 171232" src="https://github.com/user-attachments/assets/36fa9cd3-338d-4eb5-b3ab-862f4092c7d5" />
 
 
-
-The command sudo setoolkit in the prompt gives menu with set prompt. Select menu1 for Social Engineering Attacks:
-## OUTPUT
-
-
-
-It displays the following menu and select 2 for Website Attack Vectors:
-## OUTPUT
-
-
-
-The Credential Harvester Attack Method displays the following menu. In this menu1 for Web Templates is selected:
-## OUTPUT
-
-
-
-It shows the following screen in which the ip address of the attacker need to be given which is the default value:
-## OUTPUT
-
-
-
-
-It shows the following screen in which the option Google can be selected:
-## OUTPUT
-
-
-
-
-
-SET starts my Kali Linux Webserver on port 80, with the fake Google account login page. The setup is done:
-## OUTPUT
-
-
-
-
-In windows IE, on giving the url http://192.168.1.2 (use appropriate IP address), the fake Google page is displayed. The victim can enter the username and password
-## OUTPUT
-
-
-SET logs the information regarding the Google credentials:
-## OUTPUT
-
-
-
-SET logs the information in the xml file under /root/.set directory:
-## OUTPUT
-
-
-
-
-
-
-
-
-
+<img width="666" height="123" alt="1" src="https://github.com/user-attachments/assets/71ab60f6-4e90-47fc-a87e-9f17337d7549" />
 
 
 
